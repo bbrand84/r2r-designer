@@ -3,10 +3,11 @@
     <div class="form-group">
       <label for="dataSourceSelect" class="col-md-2 control-label">Data Source</label>
       <div id="dataSourceSelect" class="col-md-8">
-        <select class="form-control" ng-model="config.datasource" ng-options="datasource.name for datasource in config.datasources">
+        <select class="form-control" ng-model="config.selectedDatasource" ng-options="datasource.name for datasource in config.datasources">
           <option value="">Choose ...</option>
         </select>
       </div>
+      {{selectedDatasource}}
       <div class="col-md-2">
         <button class="btn btn-primary" ng-click="newDatasource()"><span class="glyphicon glyphicon-plus"></span><!-- New --></button>
         <button class="btn btn-default" ng-click="editDatasource()"><span class="glyphicon glyphicon-wrench"></span><!-- Configure --></button>

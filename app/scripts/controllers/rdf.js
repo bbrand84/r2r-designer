@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('app')
-  .controller('RdfCtrl', function ($scope, $http, Config, Rdb, Rdf, Lov, R2rs) {
+  .controller('RdfCtrl', function ($scope, $http, $q, Config, Rdb, Rdf, Lov, R2rs) {
 
     $scope.rdb = Rdb;
-    
+
     $scope.template = '';
     $scope.templateColumns = [];
     $scope.column = '';
@@ -18,9 +18,10 @@ angular.module('app')
     }, true);
 
     $scope.$watch('templateColumns', function (value) {
-      if ($scope.rdb.table && $scope.template && value) {
-        R2rs.getSuggestedDBPediaTypes($scope.rdb.table, $scope.template).then(function (promise) {
-          $scope.suggestedTypes = promise;
+      if (Rdb.table && $scope.template && value) {
+        $q.all([R2rs.getSuggestedDBPediaTypes(Rdb.table, $scope.template),
+                R2rs.getSuggestedLOVClasses(Rdb.table, $scope.column)]).then(function (promise) {
+          $scope.suggestedTypes = promise[0].concat(promise[1]);
         });
       }
     }, true);

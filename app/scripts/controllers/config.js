@@ -18,13 +18,12 @@ angular.module('app')
   .controller('ConfigCtrl', function ($scope, $modal, R2rs, Config) {
   
   $scope.config = Config;
-  $scope.datasource = $scope.config.datasources[0];
 
-  $scope.$watch('config.datasource', function (value) {
-    var spec = $scope.config.datasources.filter(function (i) { return (i.name === value); })[0];
-
-    if (spec) {
-      R2rs.registerDatabase(spec);
+  $scope.$watch('config.selectedDatasource', function (value) {
+    if (value) {
+      R2rs.registerDatabase(value).success(function () {
+        $scope.config.datasource = value;
+      });
     }
   });
 

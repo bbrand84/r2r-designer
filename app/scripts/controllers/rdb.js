@@ -9,7 +9,12 @@ angular.module('app')
     $scope.data = [];
     $scope.columnsMap = [];
 
+    $scope.$watch('config.selectedDatasource', function () {
+      $scope.tables = [];
+    });
+
     $scope.$watch('config.datasource', function (value) {
+      $scope.tables = [];
       if (value) {
         R2rs.getTables().then(function (promise) {
           $scope.tables = promise;

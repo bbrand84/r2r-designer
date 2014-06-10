@@ -22,7 +22,7 @@ module.exports = function (grunt) {
     yeoman: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
-      dist: 'dist'
+      dist: 'static'
     },
 
     // Watches files for changes and runs tasks based on the changed files
@@ -191,8 +191,8 @@ module.exports = function (grunt) {
           src: [
             '<%= yeoman.dist %>/scripts/{,*/}*.js',
             '<%= yeoman.dist %>/styles/{,*/}*.css',
-            '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%= yeoman.dist %>/styles/fonts/*'
+            '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+            // '<%= yeoman.dist %>/styles/fonts/*'
           ]
         }
       }
@@ -302,12 +302,13 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>',
           src: [
-            '*.{ico,png,txt}',
-            '.htaccess',
-            '*.html',
-            'views/{,*/}*.html',
-            'images/{,*/}*.{webp}',
-            'fonts/*'
+            '*.{ico,png,txt}'
+            , '.htaccess'
+            , '*.html'
+            , 'views/{,*/}*.html'
+            , 'images/{,*/}*.{webp}'
+            , 'styles/fonts/*'
+            , 'partials/*'
           ]
         }, {
           expand: true,
@@ -320,7 +321,7 @@ module.exports = function (grunt) {
         expand: true,
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
-        src: '{,*/}*.css'
+        src: '{,*/}*.*'
       }
     },
 

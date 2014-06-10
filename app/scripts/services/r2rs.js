@@ -109,8 +109,26 @@ angular.module('app')
         });
       },
 
+      pingDatabase: function(dbSpec) {
+        return $http.post(dbAdapter + '/test', {}, {
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+          params: {
+            subname: dbSpec.subname,
+            subprotocol: dbSpec.subprotocol,
+            username: dbSpec.username,
+            password: dbSpec.password
+          }
+        }).success(function (data) {
+          console.log(data);
+          return true;
+        }).error(function (data) {
+          return false; 
+        });
+      },
+
       registerDatabase: function(dbSpec) {
-        return $http.get(dbAdapter + '/config/register', {
+        return $http.post(dbAdapter + '/register', {}, {
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
           params: {
             subname: dbSpec.subname,
             subprotocol: dbSpec.subprotocol,

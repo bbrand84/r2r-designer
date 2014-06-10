@@ -6,15 +6,15 @@ angular.module('app')
     var datasources = [
       {
         'name' : 'Northwind Postgres Database',
-        'subprotocol' : 'psql',
-        'subname' : 'psql',
+        'subname' : 'mydb',
+        'subprotocol' : 'postgresql',
         'username' : 'postgres',
-        'password' : 'postgres'
+        'password' : ''
       },
       {
         'name' : 'MySQL Sample Database',
-        'subprotocol' : 'mysql',
         'subname' : 'mysql',
+        'subprotocol' : 'mysql',
         'username' : 'mysql',
         'password' : 'mysql'
       }
@@ -22,7 +22,7 @@ angular.module('app')
 
     return {
       datasources: datasources,
-      datasource: datasources[0],
+      selectedDatasource: datasources[0],
       baseUri: ''
     };
   });
